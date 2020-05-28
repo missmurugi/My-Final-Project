@@ -38,9 +38,13 @@ class PasswordRecovery : AppCompatActivity() {
                         mEdtNew.setText(null)
                         mEdtPrevious.setText(null)
 
-                        Toast.makeText(this, "Saving Successful", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Reset Successful", Toast.LENGTH_LONG).show()
                     } else {
-                        Toast.makeText(this, "Saving Failed", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Reset Failed", Toast.LENGTH_LONG).show()
+                    }
+
+                    if (task.isSuccessful){
+                        startActivity(Intent(this,LoginActivity::class.java))
                     }
                 }
             }

@@ -1,5 +1,6 @@
-package com.example.myfinalproject
+package com.example.myfinalproject.ui.swipeview
 
+import android.app.Activity
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -10,20 +11,21 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.myproject.resources.Home
+import com.example.myfinalproject.R
+import com.example.myfinalproject.ui.swipeview.SwipeViewViewModel.Home
 
-class ViewPagerItemFragment : Fragment() {
+class SwipeViewFragment : Fragment()  {
     //widgets
     private var mImageView: ImageView? = null
     private var mTitle: TextView? = null
-    private var mDescription: TextView? = null
+    private var mDetail: TextView? = null
 
     //vars
     private var mHome: Home? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            mHome = requireArguments().get("Home") as Home?
+            mHome = requireArguments().getParcelable("Home")
         }
     }
 
@@ -32,35 +34,35 @@ class ViewPagerItemFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_viewpager_item, container, false)
+        return inflater.inflate(R.layout.swipe_view_fragment, container, false)
     }
 
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?
     ) {
-        mImageView = view.findViewById(R.id.img)
+        mImageView = view.findViewById(R.id.ImgSwipe)
         mTitle = view.findViewById(R.id.mTvTitle)
-        mDescription = requireView().findViewById(R.id.mTvDescription)
-        init()
+        mDetail = view.findViewById(R.id.mDetail)
     }
 
     private fun init() {
         if (mHome != null) {
             val options = RequestOptions()
                 .placeholder(R.drawable.ic_launcher_background)
-            Glide.with(requireActivity())
+            Glide.with(Activity())
                 .setDefaultRequestOptions(options)
-                .load(mHome!!.javaClass)
+                .load(mHome!!.image)
                 .into(mImageView!!)
-            mTitle!!.text = mHome.toString()
-            mDescription!!.text = mHome.toString()
+            mTitle!!.text = mHome!!.title
+            mDetail!!.javaClass
         }
     }
 
     companion object {
-        fun getInstance(home: Home?): ViewPagerItemFragment {
-            val fragment = ViewPagerItemFragment()
+        @JvmStatic
+        fun getInstance(home: Home?): SwipeViewFragment {
+            val fragment = SwipeViewFragment()
             if (home != null) {
                 val bundle = Bundle()
                 bundle.putParcelable("Home", home as Parcelable?)

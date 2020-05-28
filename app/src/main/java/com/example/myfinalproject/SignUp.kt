@@ -48,9 +48,13 @@ class SignUp : AppCompatActivity() {
                         mEdtSigninPass.setText(null)
                         mConfirmPass.setText(null)
 
-                        Toast.makeText(this, "Saving Successful", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Sign Up Successful", Toast.LENGTH_LONG).show()
                     } else {
-                        Toast.makeText(this, "Saving Failed", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Sign Up Failed", Toast.LENGTH_LONG).show()
+                    }
+
+                    if (task.isSuccessful){
+                        startActivity(Intent(this,LoginActivity::class.java))
                     }
                 }
             }

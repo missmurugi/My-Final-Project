@@ -5,16 +5,24 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import java.util.*
 
-class MyPagerAdapter(
-    fm: FragmentManager?,
-    private val mfragments: ArrayList<Fragment>
-) : FragmentStatePagerAdapter(fm!!) {
+class MyPagerAdapter : FragmentStatePagerAdapter {
+    private var mFragments: ArrayList<Fragment>? = null
+
+    constructor(fm: FragmentManager) : super(fm) {}
+
     override fun getItem(i: Int): Fragment {
-        return mfragments[i]
+        return mFragments!![i]
     }
 
     override fun getCount(): Int {
-        return mfragments.size
+        return mFragments!!.size
     }
 
+    constructor(
+        fa: FragmentManager?,
+        fragments: ArrayList<Fragment>?,
+        fm: FragmentManager?
+    ) : super(fm!!) {
+        mFragments = fragments
+    }
 }

@@ -1,53 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeview"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.swipeview.SwipeViewFragment">
 
     <ImageView
-        android:id="@+id/img"
-        android:src="@color/dark_blue"
-        android:scaleType="centerInside"
+        android:id="@+id/ImgSwipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/linlayout"/>
+        android:scaleType="centerInside"
+        android:layout_above="@+id/LinLayout" />
 
     <LinearLayout
-        android:id="@+id/linlayout"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/LinLayout"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="10dp">
+       
 
     <TextView
         android:id="@+id/mTvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
+        android:layout_marginLeft="10dp"
+        android:text="3 Bedroom Flats and Apartments"
         android:textColor="#123"
-        android:layout_marginStart="10dp"
-        android:text="3 Bed and Flat Apartment for sale in Parklands"
-        android:layout_marginLeft="10dp" />
-
+        android:textSize="15sp" />
+        
         <TextView
-            android:textColor="#123"
-            android:textSize="17sp"
+            android:id="@+id/mLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_location_on_black_24dp"
             android:text="Parklands,Westlands"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_location_on_black_24dp"/>
+            android:textSize="16sp"
+            android:textColor="#123"/>
+
 
 
         <TextView
-            android:id="@+id/mTvDescription"
+            android:id="@+id/mDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="#123"
-            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             android:text="A spacious 3-bedroom apartment in the heart of Westlands. This apartment has a large living room and balcony and a separate dining area with an open plan kitchen. There is an additional Prayer room/ Study Room as well as a DSQ with a separate entrance and bathroom."
-            android:layout_marginLeft="10dp" />
+            android:textColor="#123"
+            android:textSize="15sp" />
 
 
     </LinearLayout>

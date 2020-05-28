@@ -1,11 +1,12 @@
 package com.example.myfinalproject
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 
-class SwipeViewPager : AppCompatActivity() {
+class Contact : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_swipe_view_pager)
+        setContentView(R.layout.activity_contact)
     }
 }

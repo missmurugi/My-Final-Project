@@ -54,14 +54,20 @@ class LoginActivity : AppCompatActivity() {
                         mEdtUsername.setText(null)
                         mEdtPassword.setText(null)
 
-                        Toast.makeText(this, "Saving Successful", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Login Successful", Toast.LENGTH_LONG).show()
                     } else {
                         Toast.makeText(this, "Saving Failed", Toast.LENGTH_LONG).show()
+                    }
+
+                    if (task.isSuccessful){
+                        startActivity(Intent(this,MakaziDashboard::class.java))
                     }
                 }
             }
 
         }
+
+
 
         mTvFooter.setOnClickListener {
             startActivity(Intent(this,SignUp::class.java))
