@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/interior"
+    tools:context=".SignUp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="380dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
+        <ImageView
+            android:id="@+id/img_signup"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/account"
+            app:layout_constraintEnd_toStartOf="@id/guidelineLeft"
+            app:layout_constraintStart_toEndOf="@id/guidelineRight"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+        android:id="@+id/mTvSignUp"
+        android:text="Sign Up Form"
+        android:layout_margin="40dp"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintTop_toBottomOf="@id/img_signup"
+        app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+        app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/mEdtFullName"
+            android:layout_width="340dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/et_bg"
+            android:hint="Full Name"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:textColorHint="@color/colorAccent"
+            app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/mTvSignUp" />
+
+        <EditText
+            android:id="@+id/mEdtUser"
+            android:layout_width="340dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/et_bg"
+            android:hint="User Name"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:textColorHint="@color/colorAccent"
+            app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/mEdtFullName" />
+
+
+
+        <EditText
+            android:id="@+id/mEdtEmail"
+            android:layout_width="340dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/et_bg"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:textColorHint="@color/colorAccent"
+            app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/mEdtUser" />
+
+        <EditText
+            android:id="@+id/mEdtSigninPass"
+            android:layout_width="340dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/et_bg"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textColorHint="@color/colorAccent"
+            app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/mEdtEmail" />
+
+        <EditText
+            android:id="@+id/mConfirmPass"
+            android:layout_width="340dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/et_bg"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textColorHint="@color/colorAccent"
+            app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/mEdtSigninPass" />
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+            app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/mConfirmPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/mBtnMale"
+                android:layout_width="100dp"
+                android:textColor="@color/colorAccent"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/mBtnFemale"
+            android:layout_width="100dp"
+            android:textColor="@color/colorAccent"
+            android:layout_height="wrap_content"
+            android:text="Female"
+            android:textSize="20sp" />
+    </RadioGroup>
+
+        <Button
+            android:id="@+id/mBtnSignUp"
+            android:layout_width="340dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="15dp"
+            android:text="Sign Up"
+            android:textColor="@color/colorAccent"
+            android:textAllCaps="false"
+            android:layout_marginBottom="20dp"
+            android:background="@color/login_form_details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

@@ -22,9 +22,6 @@ internal class Calendar : AppCompatActivity() {
 
             mBtnSaveMyDate.setOnClickListener {
 
-
-
-
             }
         }
     }

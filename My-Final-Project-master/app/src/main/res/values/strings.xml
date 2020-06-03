@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">My Final Project</string>
+
+    <string name="title_activity_makazi_home">MakaziHome</string>
+
+    <string name="facebook_application_id" translatable="false">1642237335932869</string>
+    <string name="facebook_login_protocal" translatable="false">3ed258cdc7b498a7d2f3c3d19c3b884b</string>
+
+</resources>

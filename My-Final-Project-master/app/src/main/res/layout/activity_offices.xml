@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal"
+    tools:context=".Offices">
+
+    <EditText
+        android:id="@+id/mEditTextLocation"
+        android:hint="Search by Location"
+        android:padding="16dp"
+        android:drawablePadding="16dp"
+        android:gravity="center_vertical"
+        android:drawableRight="@drawable/ic_search"
+        android:background="@color/login_form_details_medium"
+        android:drawableLeft="@drawable/ic_location_on_black_24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/mTextViewLocation1"
+        android:padding="12dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/baloo"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/mTextViewLocation2"
+        android:padding="12dp"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>

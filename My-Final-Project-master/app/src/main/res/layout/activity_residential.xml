@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:background="@drawable/interior"
+    tools:context=".ResidentialActivity">
+
+    <EditText
+        android:id="@+id/mResidentLocation"
+        android:hint="Search by town, city or postcode"
+        android:padding="16dp"
+        android:drawablePadding="16dp"
+        android:gravity="center_vertical"
+        android:drawableRight="@drawable/ic_search"
+        android:textColorHint="#123"
+        android:background="@color/login_form_details_medium"
+        android:drawableLeft="@drawable/ic_location_on_black_24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+    <LinearLayout
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="97dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="10dp"
+        android:ems="10"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/mEdtPropertyType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Property type"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/mEdtDistance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Distance"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/mEdtBedrooms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Bedrooms"
+            android:inputType="textPersonName" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Upload" />
+
+    <TextView
+        android:id="@+id/text_view_show_uploads"
+        android:layout_width="wrap_content"
+        android:layout_height="47dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="28dp"
+        android:gravity="center"
+        android:text="Show Uploads"
+        android:textSize="16sp" />
+
+    <ProgressBar
+        android:layout_marginTop="10dp"
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="58dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="319dp"
+        android:layout_height="301dp"
+        android:layout_above="@id/progress_bar"
+        android:layout_below="@+id/edit_text_file_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="113dp"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+
+</RelativeLayout>

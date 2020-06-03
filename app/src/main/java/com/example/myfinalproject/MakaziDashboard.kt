@@ -5,11 +5,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import kotlinx.android.synthetic.main.activity_makazi_dashboard.*
 
 internal class MakaziDashboard : AppCompatActivity(),
     View.OnClickListener {
-    private var host_card: CardView? = null
+
     private var offices_card: CardView? = null
     private var calendar_card: CardView? = null
     private var residential_card: CardView? = null
@@ -17,14 +16,14 @@ internal class MakaziDashboard : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_makazi_dashboard)
-        host_card = findViewById<View>(R.id.host_card) as CardView
+
         residential_card = findViewById<View>(R.id.residential_card) as CardView
         offices_card = findViewById<View>(R.id.offices_card) as CardView
         calendar_card = findViewById<View>(R.id.calendar_card) as CardView
         contact_card = findViewById<View>(R.id.contact_card) as CardView
 
         //add onclicklistener to the cards
-        host_card!!.setOnClickListener(this)
+
         residential_card!!.setOnClickListener(this)
         offices_card!!.setOnClickListener(this)
         calendar_card!!.setOnClickListener(this)
@@ -38,16 +37,13 @@ internal class MakaziDashboard : AppCompatActivity(),
                 i = Intent(this, Calendar::class.java)
                 startActivity(i)
             }
-            R.id.host_card -> {
-                i = Intent(this, Host::class.java)
-                startActivity(i)
-            }
+
             R.id.offices_card -> {
                 i = Intent(this, Offices::class.java)
                 startActivity(i)
             }
             R.id.residential_card -> {
-                i = Intent(this, Residential::class.java)
+                i = Intent(this, ResidentialActivity::class.java)
                 startActivity(i)
             }
 

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".DetailsActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textStyle="bold"
+            android:textSize="40sp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/tvDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3 Bedroom Flat and Apartment"
+            android:textColor="#000000" />
+
+        <TextView
+            android:textColor="#000000"
+            android:textStyle="italic"
+            android:layout_marginBottom="20sp"
+            android:textSize="20sp"
+            android:id="@+id/textView2"
+            android:layout_margin="22dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A spacious 3-bedroom apartment in the hearts of westlands.This apartmenthas a large living roomand a balcony and a separate dining area with an open plan kitchen.Theres is an additional prayer room/study room as well as a DSQ wih separate entrance and bathroom " />
+
+        <ImageView
+            android:src="@drawable/house_1"
+            android:id="@+id/imgDetail"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:src="@drawable/house_a"
+            android:id="@+id/imgDetail2"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:src="@drawable/house_b"
+            android:id="@+id/imgDetail3"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:src="@drawable/house_c"
+            android:id="@+id/imgDetail4"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:src="@drawable/house_d"
+            android:id="@+id/imgDetail5"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:src="@drawable/house_e"
+            android:id="@+id/imgDetail6"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:textSize="20sp"
+            android:drawableLeft="@drawable/ic_location_on_black_24dp"
+            android:text="Parklands,Westlands"
+            android:textColor="#000000"
+            android:layout_marginTop="10sp"
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textStyle="bold"
+            android:textSize="40sp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/tvDetail1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4 Bedroom Flat and Apartment"
+            android:textColor="#000000" />
+
+        <TextView
+            android:textColor="#000000"
+            android:textStyle="italic"
+            android:layout_marginBottom="20sp"
+            android:textSize="20sp"
+            android:id="@+id/textView4"
+            android:layout_margin="22dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Amenities:State of the art gym and health club,Infinity swimming pool, children play area,Expansive beautiful landscaped garden,Ample parking, borehole,Common area standby generator,Intercom communication including access control,Satellite dish and MATV aerials,Electric fencing.Features: high quality finishes, spacious kitchen with fitted cabinets, solar panels connected to water heaters, all bedrooms fitted with wardrobes, spacious separate living and dining area and bedrooms with wooden floor, washing area, storage etc" />
+
+        <ImageView
+            android:src="@drawable/house_2"
+            android:id="@+id/imgDetail7"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:src="@drawable/house_2a"
+            android:id="@+id/imgDetail8"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:src="@drawable/house_2b"
+            android:id="@+id/imgDetail9"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:src="@drawable/house_2c"
+            android:id="@+id/imgDetail10"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:src="@drawable/house_2d"
+            android:id="@+id/imgDetail11"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:src="@drawable/house_2e"
+            android:id="@+id/imgDetail12"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:textSize="20sp"
+            android:drawableLeft="@drawable/ic_location_on_black_24dp"
+            android:text="Othaya Road,Lavington,Dagoretti North"
+            android:textColor="#000000"
+            android:layout_marginTop="10sp"
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</ScrollView>

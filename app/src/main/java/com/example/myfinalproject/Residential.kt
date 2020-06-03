@@ -2,118 +2,150 @@ package com.example.myfinalproject
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.view.View
+import android.webkit.MimeTypeMap
 import android.widget.*
+import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.widget.Autocomplete
-import com.google.android.libraries.places.widget.AutocompleteActivity
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
-import java.util.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.StorageTask
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_residential.*
 
-internal class Residential : AppCompatActivity() {
+
+internal class ResidentialActivity : AppCompatActivity() {
     //Initialize Variable
     var mResidentLocation: EditText? = null
+    private val PICK_IMAGE_REQUEST = 1
+    private var mImageView: ImageView? = null
+    private var mProgressBar: ProgressBar? = null
+    private var mImageUri: Uri? = null
+    private var mStorageRef: StorageReference? = null
+    private var mDatabaseRef: DatabaseReference? = null
+    private var mUploadTask: StorageTask<*>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_residential)
 
         //assign variables
-        mResidentLocation = findViewById(R.id.mResidentLocation)
-        val ImgResident =
-            findViewById<View>(R.id.ImgResident) as ImageView
-        val ImgResident1 =
-            findViewById<View>(R.id.ImgResident1) as ImageView
-        val ImgResident2 =
-            findViewById<View>(R.id.ImgResident2) as ImageView
-        val actv1 =
-            findViewById<View>(R.id.actv1) as AutoCompleteTextView
-        val actv2 =
-            findViewById<View>(R.id.actv2) as AutoCompleteTextView
-        val actv3 =
-            findViewById<View>(R.id.actv3) as AutoCompleteTextView
-        val adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_dropdown_item_1line,
-            propertytype
-        )
-        actv1.setAdapter(adapter)
-        val adapter1 = ArrayAdapter(
-            this,
-            android.R.layout.simple_dropdown_item_1line,
-            propertytype
-        )
-        actv2.setAdapter(adapter)
-        val adapter2 = ArrayAdapter(
-            this,
-            android.R.layout.simple_dropdown_item_1line,
-            propertytype
-        )
-        actv3.setAdapter(adapter)
-        ImgResident.setOnClickListener { actv1.showDropDown() }
-        ImgResident1.setOnClickListener { actv2.showDropDown() }
-        ImgResident2.setOnClickListener { actv3.showDropDown() }
+
+        mImageView = findViewById(R.id.imageView)
+        mProgressBar = findViewById(R.id.progress_bar)
+        mProgressBar = findViewById(R.id.progress_bar)
+        mStorageRef = FirebaseStorage.getInstance().getReference("uploads")
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads")
 
 
-        //Initialize Places
-        Places.initialize(
-            applicationContext,
-            "AIzaSyAahixRSlDS-WH5v-3ZrsoZPyQEbXSc8S8"
-        )
+        //Choosing an Image from Gallery
 
-        //Set EditText non focusable
-        mResidentLocation!!.setFocusable(false)
-        mResidentLocation!!.setOnClickListener(View.OnClickListener { //Initialize place field list
-            val fieldList = Arrays.asList(
-                Place.Field.ADDRESS,
-                Place.Field.LAT_LNG,
-                Place.Field.NAME
-            )
+        //Choosing an Image from Gallery
+        imageView.setOnClickListener {
+            openFileChooser()
+        }
+        //Uploading an Image
+        //Uploading an Image
+        button_upload.setOnClickListener {
+            if (mUploadTask != null && mUploadTask!!.isInProgress) {
+                Toast.makeText(this@ResidentialActivity, "Upload in Progress", Toast.LENGTH_LONG)
+                    .show()
+            } else {
+                uploadFile()
+            }
+        }
+        //Showing uploaded images
+        //Showing uploaded images
+        text_view_show_uploads.setOnClickListener {
+            openImagesActivity()
+        }
 
-            //Create intent
-            val intent = Autocomplete.IntentBuilder(
-                AutocompleteActivityMode.OVERLAY
-                , fieldList
-            ).build(this@Residential)
+    }
 
-            //Start Activity result
-            startActivityForResult(intent, 100)
-        })
+    fun openFileChooser() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(intent, PICK_IMAGE_REQUEST)
     }
 
     override fun onActivityResult(
         requestCode: Int,
         resultCode: Int,
-        data: Intent?
+        @Nullable data: Intent?
     ) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
-            //When Success
-            //Initialize place
-            val place = Autocomplete.getPlaceFromIntent(data!!)
-            //Set address on Edit Text
-            mResidentLocation!!.setText(place.address)
-        } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
-            //When error
-            //Initialize status
-            val status =
-                Autocomplete.getStatusFromIntent(data!!)
-            //Display Toast
-            Toast.makeText(
-                applicationContext, status.statusMessage
-                , Toast.LENGTH_SHORT
-            ).show()
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode ==
+            Activity.RESULT_OK && data != null && data.data != null
+        ) {
+            mImageUri = data.data
+            Picasso.with(this).load(mImageUri).into(mImageView)
+            //You Can Also Use
+            //mImageView.setImageURI(mImageUri);
         }
     }
 
-    companion object {
-        private val propertytype =
-            arrayOf("Property Type", "House", "Flat/Apartment", "New Homes")
-        private val distance =
-            arrayOf("Distance", "5 miles", "10 miles", "20 miles")
-        private val bedrooms =
-            arrayOf("Bedrooms", "Studio", "1+", "2+", "3+")
+
+    // Getting an extension from our file (eg. Jpeg,Png,Jpg etc)
+    private fun getFileExtension(uri: Uri): String? {
+        val cR = contentResolver
+        val mime = MimeTypeMap.getSingleton()
+        return mime.getExtensionFromMimeType(cR.getType(uri))
     }
+
+    private fun uploadFile() {
+        if (mImageUri != null) {
+            val fileReference = mStorageRef!!.child(
+                System.currentTimeMillis().toString() + "." + getFileExtension(mImageUri!!)
+            )
+            mUploadTask = fileReference.putFile(mImageUri!!).addOnSuccessListener { taskSnapshot ->
+
+                //Success
+                val delay: Thread = object : Thread() {
+                    override fun run() {
+                        try {
+                            sleep(500)
+                        } catch (e: InterruptedException) {
+                            e.printStackTrace()
+                        }
+                    }
+                }
+                delay.start()
+                Toast.makeText(this@ResidentialActivity, "Upload Successful", Toast.LENGTH_LONG)
+                    .show()
+                var property_type = mEdtPropertyType.text.toString()
+                var property_distance = mEdtDistance.text.toString()
+                var property_bedrooms = mEdtBedrooms.text.toString()
+                val upload = Upload(
+                    property_type,
+                    property_distance,
+                    property_bedrooms,
+                    taskSnapshot.storage.getDownloadUrl().toString(),
+                    System.currentTimeMillis().toString()
+                )
+                val uploadId = mDatabaseRef!!.push().key
+                mDatabaseRef!!.child(System.currentTimeMillis().toString() + "").setValue(upload)
+            }.addOnFailureListener { e ->
+                //Failure
+                Toast.makeText(this@ResidentialActivity, e.message, Toast.LENGTH_SHORT).show()
+            }.addOnProgressListener { taskSnapshot ->
+
+                //Updating the Progress Bar
+                val progress =
+                    100.0 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount
+                mProgressBar!!.progress = progress.toInt()
+            }
+        } else {
+            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun openImagesActivity() {
+        val intent = Intent(applicationContext, DetailsActivity::class.java)
+        startActivity(intent)
+    }
+
+
 }

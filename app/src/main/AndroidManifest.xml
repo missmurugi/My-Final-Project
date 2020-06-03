@@ -9,12 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Contact"></activity>
-        <activity android:name=".Residential" />
+        <activity android:name=".ViewcommercialActivity" />
+        <activity android:name=".ViewcommercialsActivity" />
+        <activity android:name=".ImagesActivity" />
+        <activity android:name=".DetailsActivity" />
+        <activity android:name=".ResidentialActivity" />
+        <activity android:name=".ViewresidentialsActivity" />
+        <activity android:name=".Contact" />
         <activity android:name=".Offices" />
         <activity android:name=".Calendar" />
-        <activity android:name=".Host" />
-        <activity android:name=".SwipeView" />
+        <activity android:name=".Commercial" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,13 +27,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".Main2Activity" />
         <activity android:name=".MakaziDashboard" />
         <activity android:name=".PasswordRecovery" />
         <activity android:name=".RecoverySuccessful" />
         <activity android:name=".SignUp" />
-        <activity android:name=".SwipeViewPager" />
-        <activity android:name=".ViewPagerItemFragment" />
     </application>
 
 </manifest>
