@@ -5,14 +5,14 @@ import com.google.firebase.database.Exclude
 class Upload {
     private var Type: String? = null
     private var Distance: String? = null
-    private var Beds: String? = null
-    private var key: String? = null
+    private var description: String? = null
     private var mImageUrl: String? = null
+    private var key: String? = null
 
     constructor(Type: String?, Distance: String?, Beds: String?, mImageUrl: String?, key: String?) {
         this.Type = Type
         this.Distance = Distance
-        this.Beds = Beds
+        this.description = Beds
         this.mImageUrl = mImageUrl
         this.key = key
     }
@@ -35,11 +35,11 @@ class Upload {
         this.Distance = Distance
     }
     fun getBeds(): String? {
-        return Beds
+        return description
     }
 
     fun setBeds(Type: String) {
-        this.Beds = Beds
+        this.description = description
     }
 
     fun getmImageUrl(): String? {

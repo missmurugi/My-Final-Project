@@ -8,6 +8,7 @@ import android.webkit.MimeTypeMap
 import android.widget.*
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -37,12 +38,13 @@ internal class ResidentialActivity : AppCompatActivity() {
         mProgressBar = findViewById(R.id.progress_bar)
         mProgressBar = findViewById(R.id.progress_bar)
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads")
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads")
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("properties/"+System.currentTimeMillis())
 
 
-        //Choosing an Image from Gallery
+        //Chhosing an Image from Gallery
 
-        //Choosing an Image from Gallery
+
+        //Chhosing an Image from Gallery
         imageView.setOnClickListener {
             openFileChooser()
         }
@@ -56,6 +58,7 @@ internal class ResidentialActivity : AppCompatActivity() {
                 uploadFile()
             }
         }
+
         //Showing uploaded images
         //Showing uploaded images
         text_view_show_uploads.setOnClickListener {
@@ -95,52 +98,64 @@ internal class ResidentialActivity : AppCompatActivity() {
         return mime.getExtensionFromMimeType(cR.getType(uri))
     }
 
-    private fun uploadFile() {
-        if (mImageUri != null) {
-            val fileReference = mStorageRef!!.child(
-                System.currentTimeMillis().toString() + "." + getFileExtension(mImageUri!!)
-            )
-            mUploadTask = fileReference.putFile(mImageUri!!).addOnSuccessListener { taskSnapshot ->
-
-                //Success
-                val delay: Thread = object : Thread() {
-                    override fun run() {
-                        try {
-                            sleep(500)
-                        } catch (e: InterruptedException) {
-                            e.printStackTrace()
-                        }
-                    }
-                }
-                delay.start()
-                Toast.makeText(this@ResidentialActivity, "Upload Successful", Toast.LENGTH_LONG)
-                    .show()
-                var property_type = mEdtPropertyType.text.toString()
-                var property_distance = mEdtDistance.text.toString()
-                var property_bedrooms = mEdtBedrooms.text.toString()
-                val upload = Upload(
-                    property_type,
-                    property_distance,
-                    property_bedrooms,
-                    taskSnapshot.storage.getDownloadUrl().toString(),
-                    System.currentTimeMillis().toString()
-                )
-                val uploadId = mDatabaseRef!!.push().key
-                mDatabaseRef!!.child(System.currentTimeMillis().toString() + "").setValue(upload)
-            }.addOnFailureListener { e ->
-                //Failure
-                Toast.makeText(this@ResidentialActivity, e.message, Toast.LENGTH_SHORT).show()
-            }.addOnProgressListener { taskSnapshot ->
-
-                //Updating the Progress Bar
-                val progress =
-                    100.0 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount
-                mProgressBar!!.progress = progress.toInt()
+    private fun uploadFile(){
+        var property_type = mEdtPropertyType.text.toString()
+        var property_distance = mEdtDistance.text.toString()
+        var property_description = mEdtDescription.text.toString()
+        var property_bedrooms = mEdtBedrooms.text.toString()
+        val upload = Upload(property_type,property_distance,property_description,property_bedrooms,System.currentTimeMillis().toString())
+        mDatabaseRef!!.setValue(upload).addOnCompleteListener(OnCompleteListener { task ->
+            if (task.isSuccessful){
+                Toast.makeText(applicationContext,"Upload successful",Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(applicationContext,"Upload failed",Toast.LENGTH_LONG).show()
             }
-        } else {
-            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show()
-        }
+        })
     }
+
+//    private fun uploadFile() {
+//        if (mImageUri != null) {
+//            val fileReference = mStorageRef!!.child(System.currentTimeMillis().toString() + "." + getFileExtension(mImageUri!!))
+//            mUploadTask = fileReference.putFile(mImageUri!!).addOnSuccessListener { taskSnapshot ->
+//
+//                //Success
+//                val delay: Thread = object : Thread() {
+//                    override fun run() {
+//                        try {
+//                            sleep(500)
+//                        } catch (e: InterruptedException) {
+//                            e.printStackTrace()
+//                        }
+//                    }
+//                }
+//                delay.start()
+//                Toast.makeText(this@ResidentialActivity, "Upload Successful", Toast.LENGTH_LONG).show()
+//                var property_type = mEdtPropertyType.text.toString()
+//                var property_distance = mEdtDistance.text.toString()
+//                var property_description = mEdtDescription.text.toString()
+//                var property_bedrooms = mEdtBedrooms.text.toString()
+//                val upload = Upload(property_type,property_distance,property_description,property_bedrooms,taskSnapshot.storage.getDownloadUrl().toString(),System.currentTimeMillis().toString())
+//                val uploadId = mDatabaseRef!!.push().key
+//                mDatabaseRef!!.child(System.currentTimeMillis().toString() + "").setValue(upload)
+//            }.addOnFailureListener { e ->
+//                //Failure
+//                Toast.makeText(this@ResidentialActivity, e.message, Toast.LENGTH_SHORT).show()
+//            }.addOnProgressListener { taskSnapshot ->
+//
+//                //Updating the Progress Bar
+//                val progress =
+//                    100.0 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount
+//                mProgressBar!!.progress = progress.toInt()
+//            }
+//        } else {
+//            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show()
+//        }
+//    }
+
+    private fun Upload(propertyType: String, propertyDistance: String, propertyDescription: String, propertyBedrooms: String, toString: String, toString1: String) {
+
+    }
+
 
     private fun openImagesActivity() {
         val intent = Intent(applicationContext, DetailsActivity::class.java)

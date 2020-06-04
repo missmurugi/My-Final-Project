@@ -26,7 +26,7 @@ class ImageAdapter (
         holder.textViewType.setText(uploadCurrent.getType())
         holder.textViewDistance.setText(uploadCurrent.getDistance())
         holder.textViewBeds.setText(uploadCurrent.getBeds())
-        Picasso.with(mContext).load(uploadCurrent.getmImageUrl()).placeholder(R.mipmap.ic_launcher).fit().centerInside().into(holder.imageView)
+        Picasso.with(mContext).load(uploadCurrent.getmImageUrl()).placeholder(R.mipmap.residentialhouse).fit().centerInside().into(holder.imageView)
     }
 
     override fun getItemCount(): Int {

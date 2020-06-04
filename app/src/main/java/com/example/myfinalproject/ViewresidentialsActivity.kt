@@ -41,7 +41,7 @@ class ViewresidentialsActivity : AppCompatActivity(), ImageAdapter.OnItemClickLi
 
 
         mStorage = FirebaseStorage.getInstance()
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads")
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("properties")
         progress.show()
         mDBListener = mDatabaseRef!!.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
